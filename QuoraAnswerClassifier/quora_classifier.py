@@ -2,7 +2,7 @@ import numpy as np
 import fileinput
 from sklearn.ensemble import RandomForestClassifier
 
-## Read and parse input
+## Read and parse input -------------------------------------------------------
 def parse_record(line, labeled = True):
     rec_id = line[0]
     rec_y = line[1] if labeled else None
@@ -29,16 +29,16 @@ for i in range(q):
     x_test[i, :] = rec_x
         
 
-## Train a small RandomForest
+## Train a small RandomForest -------------------------------------------------
 rf = RandomForestClassifier(n_estimators = 100,
                             verbose = 0,
                             n_jobs = -1)
 rf.fit(x_train, y_train)
 
-## Predict the test set
+## Predict the test set -------------------------------------------------------
 y_test = zip(id_test, 
              map(lambda y: "+1" if y == 1.0 else "-1", rf.predict(x_test)))
 
-## Output predictions
+## Output predictions ---------------------------------------------------------
 for y_id, y in y_test:
     print y_id, y
