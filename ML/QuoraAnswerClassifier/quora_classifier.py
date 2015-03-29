@@ -11,6 +11,7 @@ def parse_record(line, labeled = True):
     return rec_id, rec_x, rec_y
 
 inputf = fileinput.input()
+# Training set
 n, m = map(int, inputf.next().split())
 id_train = []
 x_train = np.zeros((n, m))
@@ -20,6 +21,7 @@ for i in range(n):
     id_train.append(rec_id)
     x_train[i, :] = rec_x
     y_train[i] = rec_y
+# Test set
 q = int(inputf.next())
 id_test = []
 x_test = np.zeros((q, m))
